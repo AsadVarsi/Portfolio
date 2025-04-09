@@ -3,18 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const topNav = document.querySelector('.top-nav');
     const upButton = document.getElementById('up');
 
+    // Toggle menu open/close
     if (menuToggler && topNav) {
         menuToggler.addEventListener('click', function () {
             menuToggler.classList.toggle('open');
             topNav.classList.toggle('open');
         });
 
+        // Close menu on nav click
         topNav.addEventListener('click', function () {
             menuToggler.classList.remove('open');
             topNav.classList.remove('open');
         });
     }
 
+    // Smooth scroll to sections
     document.querySelectorAll('nav a[href^="#"]').forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
@@ -29,12 +32,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     behavior: 'smooth'
                 });
 
-                if (menuToggler) menuToggler.classList.remove('open');
-                if (topNav) topNav.classList.remove('open');
+                menuToggler.classList.remove('open');
+                topNav.classList.remove('open');
             }
         });
     });
 
+    // Scroll to top when clicking #up
     if (upButton) {
         upButton.addEventListener('click', function () {
             window.scrollTo({
@@ -44,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Initialize AOS (if it's included)
     if (typeof AOS !== 'undefined') {
         AOS.init({
             easing: 'ease',
